@@ -5,14 +5,13 @@
 #include "order.hpp"
 
 
-Order::Order() {
-
-}
+Order::Order()
+  : table_id(0), timestamp(std::chrono::system_clock::now())
+{ }
 
 Order::Order(int table_id_)
-  : timestamp(std::chrono::system_clock::now()), table_id(table_id_)
-{
-}
+  : table_id(table_id_), timestamp(std::chrono::system_clock::now())
+{ }
 
 void Order::addDish(Dish dish) {
     dishes.push_back(dish);
@@ -37,7 +36,7 @@ std::chrono::system_clock::time_point Order::getTimestamp() const {
     return timestamp;
 }
 
-int Order::getTotalCost() {
+int Order::getTotalCost() const {
     int total = 0;
     for (const auto& dish : dishes) {
         total += dish.getPrice();

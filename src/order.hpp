@@ -3,6 +3,8 @@
 #include "dish.hpp"
 #include <chrono>
 
+#include <vector>
+
 
 
 class Order {
@@ -22,6 +24,6 @@ class Order {
         const std::vector<Dish>& getDishes() const;
         int getTableNumber() const;
         std::chrono::system_clock::time_point getTimestamp() const;
-        int getTotalCost();
+        int getTotalCost() const;
         bool operator==(const Order& other) const;
 };

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 enum class DishType { Vegan, Vegetarian, Meat };
 
 class Dish {
@@ -9,7 +11,7 @@ class Dish {
         int price;
     public:
         Dish();
-        Dish(std::string name_, DishType type_, int price_);
+        Dish(const std::string& name_, DishType type_, int price_);
 
         std::string getName() const;
         DishType getType() const;

@@ -6,13 +6,16 @@
 #include "src/order.hpp"
 #include "src/dish.hpp"
 
-
 int main() {
-    Dish dish1("Steak", Dish::Type::Meat, 25);
-    Dish dish2("Salad", Dish::Type::Vegetarian, 10);
-    Dish dish3("Vegan Burger", Dish::Type::Vegan, 15);
-    Dish dish4("Chicken Soup", Dish::Type::Meat, 12);
+    Table table;
 
+    // Sample dishes
+    Dish dish1("Steak",    DishType::Meat,       25);
+    Dish dish2("Salad",    DishType::Vegetarian, 10);
+    Dish dish3("Vegan Burger", DishType::Vegan,  15);
+    Dish dish4("Chicken Soup", DishType::Meat,    12);
+
+    // Create orders
     Order order1(1);
     order1.addDish(dish1);
     order1.addDish(dish2);
@@ -21,24 +24,30 @@ int main() {
     order2.addDish(dish3);
     order2.addDish(dish4);
 
-    Table table;
+    // Add orders to table
     table.addOrder(order1);
     table.addOrder(order2);
 
-    // Modify orders: replace dish2 with dish3 in order1
-    table.modifyOrders(order1, dish2, dish3);
-
-    // Print orders sorted by time
-    std::cout << "Orders sorted by time:" << std::endl;
+    // Print initial orders
+    std::cout << "Initial orders sorted by time:\n";
     table.printOrders(0);
 
-    // Print orders sorted by number of dishes
-    std::cout << "Orders sorted by number of dishes:" << std::endl;
+    std::cout << "\nInitial orders sorted by number of dishes:\n";
     table.printOrders(1);
 
-    // Print total costs separated by dish types
-    std::cout << "Total costs:" << std::endl;
+    // Modify order1: replace Salad with Vegan Burger
+    std::cout << "\nModify order1 (table 1): replace Salad with Vegan Burger\n";
+    table.modifyOrders(order1, dish2, dish3);
+    table.printOrders(0);
+
+    // Print total costs
+    std::cout << "\nTotal costs:\n";
     table.printTotalCosts();
+
+    // Remove order1
+    std::cout << "\nRemove order1 (table 1)\n";
+    table.removeOrder(order1);
+    table.printOrders(0);
 
     return 0;
 }
